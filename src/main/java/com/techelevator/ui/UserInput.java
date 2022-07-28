@@ -65,6 +65,25 @@ public class UserInput {
         }
 
     }
+    public static String inventoryInput(){
+        //temp
+        //for testing/assignment purposes
+        //ideally, inventory source would be read form the same file everytime
+        //but for the sake of the exercise, the user is prompted to pick which file is loaded
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select a .csv file to load");
+        String csvInput = scanner.nextLine();
+        String csvOutput = "";
+        if (csvInput.substring(csvInput.length() - 4, csvInput.length()). equals(".csv")){
+            csvOutput = csvInput;
+            //return csvOutput;
+        }else{
+            System.out.println("Please enter a valid .csv file");
+            inventoryInput();
+        }
+        return csvOutput;
+
+    }
 
 
 }
