@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import com.techelevator.application.VendingMachine;
+
 import java.util.Scanner;
 
 /**
@@ -85,6 +87,21 @@ public class UserInput {
 
     }
 
-
+    public static String promptFeedMachine() {
+        Scanner userInput = new Scanner(System.in);
+        int counter = 0;
+        while (true) {
+            System.out.println("Please enter a dollar amount (1, 5, 10, or 20) to feed the machine:");
+            String input = userInput.nextLine();
+            if (input.equals("1") || input.equals("5") || input.equals("10") || input.equals("20")) {
+                return input;
+            }
+            System.err.println("Please enter a valid input");
+            counter++;
+            if (counter > 5) {
+                System.err.println("ARE YOU ILLITERATE?");
+            }
+        }
+    }
 }
 
