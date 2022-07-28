@@ -92,7 +92,25 @@ public class VendingMachine {
             balance = balance.subtract(nickel);
             coinsReturned[3]++;
         }
+        System.out.println("Clink!");
+        System.out.println("Change dispensed: " + coinsReturned[0] + " dollar(s), " + coinsReturned[1] + " quarter(s), " + coinsReturned[2] + " dime(s), and " + coinsReturned[3] + " nickel(s)");
         return coinsReturned;
-        //return coinsReturned[0] + " dollars, " + coinsReturned[1] + " quarters, " + coinsReturned[2] + " dimes and " + coinsReturned[3] + " nickels";
+    }
+
+    public void feedMachine(String userInput) {
+        switch(userInput) {
+            case "1":
+                balance = balance.add(new BigDecimal("1.00"));
+                break;
+            case "5":
+                balance = balance.add(new BigDecimal("5.00"));
+                break;
+            case "10":
+                balance = balance.add(new BigDecimal("10.00"));
+                break;
+            case "20":
+                balance = balance.add(new BigDecimal("20.00"));
+                break;
+        }
     }
 }
