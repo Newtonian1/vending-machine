@@ -3,6 +3,8 @@ package com.techelevator.application;
 import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class AuditWriter {
     private LocalDateTime dateTime;
@@ -10,29 +12,22 @@ public class AuditWriter {
     private BigDecimal oldBalance;
     private BigDecimal newBalance;
 
-    /*public AuditWriter(LocalDateTime dateTime, String action, BigDecimal oldBalance, BigDecimal newBalance) {
-        this.dateTime = dateTime;
-        this.action = action;
-        this.oldBalance = oldBalance;
-        this.newBalance = newBalance;*/
-   // }
-
     public BigDecimal getBalance() {
         return newBalance;
     }
-    public BigDecimal setNewBalance(){
 
-    }
 
-    public void write (LocalDateTime dateTime, String action, BigDecimal oldBalance, BigDecimal newBalance){
+    public void write (String action, BigDecimal oldBalance, BigDecimal newBalance){
             File file = new File("Audit.txt");
         try {
             if (!file.exists()){
                 file.createNewFile();
             }
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String formatDateTime = LocalDateTime.now().format(format);
             FileOutputStream auditOutput = new FileOutputStream(file, true);
             PrintWriter writer = new PrintWriter(auditOutput);
-            writer.println(dateTime + " " + action + ": " + oldBalance + " " + newBalance);
+            writer.println(formatDateTime + "\t" + action + ":\t$" + oldBalance + "\t$" + newBalance);
             writer.flush();
             writer.close();
         }catch(IOException e){

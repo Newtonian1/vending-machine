@@ -2,14 +2,8 @@ package com.techelevator.application;
 
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
-import com.techelevator.application.Inventory;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class VendingMachine {
     //Instance variables
@@ -21,6 +15,7 @@ public class VendingMachine {
         return balance;
     }
     Inventory inventory = new Inventory();
+    AuditWriter auditWriter = new AuditWriter();
 
 
     /*public Map<String, ItemSlot> getInventory() {
@@ -92,6 +87,7 @@ public class VendingMachine {
         BigDecimal quarter = new BigDecimal("0.25");
         BigDecimal dime = new BigDecimal("0.10");
         BigDecimal nickel = new BigDecimal("0.05");
+        auditWriter.write("CHANGE GIVEN", balance, new BigDecimal("0.00"));
         while (balance.compareTo(dollar) >= 0) {
             balance = balance.subtract(dollar);
             coinsReturned[0]++;
@@ -128,6 +124,7 @@ public class VendingMachine {
                 balance = balance.add(new BigDecimal("20.00"));
                 break;
         }
+        auditWriter.write("MONEY FED", balance.subtract(new BigDecimal(userInput)), balance);
     }
     /*public void setInventory(){
         String csvFileChoice = UserInput.inventoryInput();
@@ -145,23 +142,26 @@ public class VendingMachine {
         }*/
 
     public void dispenseItem(String itemSlot){
+        ItemSlot slot = inventory.getInventory().get(itemSlot);
         if (!inventory.getInventory().containsKey(itemSlot)){
             UserOutput.displayMessage("Item slot does not exist");
             runPurchaseMenu();
         }else if (inventory.getInventory().containsKey(itemSlot)){
-            if (inventory.getInventory().get(itemSlot).getQuantity() < 1){
+            BigDecimal price = slot.getPrice();
+            if (slot.getQuantity() < 1){
                 UserOutput.displayMessage("Item is out of stock");
                 runPurchaseMenu();
-            }else if (balance.compareTo(inventory.getInventory().get(itemSlot).getPrice()) == -1){
+            }else if (balance.compareTo(price) == -1){
                 UserOutput.displayMessage("Insufficient funds");
                 runPurchaseMenu();
             }
             else{
-                System.out.println(inventory.getInventory().get(itemSlot).toString());
-                System.out.println(inventory.getInventory().get(itemSlot).funnyMessage());
-                balance = balance.subtract(inventory.getInventory().get(itemSlot).getPrice());
+                System.out.println(slot.toString());
+                System.out.println(slot.funnyMessage());
+                auditWriter.write("Purchased " + slot.getItemName(), balance, balance.subtract(price));
+                balance = balance.subtract(price);
                 System.out.println("balance: $" + balance);
-                inventory.getInventory().get(itemSlot).decrementQuantity();
+                slot.decrementQuantity();
                 runPurchaseMenu();
             }
         }

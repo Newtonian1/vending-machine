@@ -73,8 +73,9 @@ public class UserInput {
         //ideally, inventory source would be read form the same file everytime
         //but for the sake of the exercise, the user is prompted to pick which file is loaded
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Select a .csv file to load: ");
-        String csvInput = scanner.nextLine();
+        //System.out.print("Select a .csv file to load: ");
+        //String csvInput = scanner.nextLine();
+        String csvInput = "vending.csv";
         String csvOutput = "";
         if (csvInput.substring(csvInput.length() - 4, csvInput.length()). equals(".csv")){
             csvOutput = csvInput;
