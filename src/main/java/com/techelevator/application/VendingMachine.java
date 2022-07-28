@@ -13,16 +13,16 @@ import java.util.Scanner;
 public class VendingMachine {
     //Instance variables
     private BigDecimal balance = new BigDecimal("0.00");
-    private Map<String, ItemSlot> inventory = new HashMap<>();
+    //private Map<String, ItemSlot> inventory = new HashMap<>();
 
     //Getters
     public BigDecimal getBalance() {
         return balance;
     }
 
-    public Map<String, ItemSlot> getInventory() {
+    /*public Map<String, ItemSlot> getInventory() {
         return inventory;
-    }
+    }*/
 
     //Setters
     public void setBalance(BigDecimal balance) {
@@ -118,7 +118,7 @@ public class VendingMachine {
                 break;
         }
     }
-    public void setInventory(){
+    /*public void setInventory(){
         String csvFileChoice = UserInput.inventoryInput();
         File file = new File(csvFileChoice);
         try{
@@ -131,8 +131,8 @@ public class VendingMachine {
             }
         }catch (IOException e){
             System.out.println("file not found");
-        }
+        }*/
 
 
     }
-}
+
