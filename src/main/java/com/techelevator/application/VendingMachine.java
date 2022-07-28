@@ -62,7 +62,7 @@ public class VendingMachine {
                 // open selectItemSlot method
 
             } else if (purchaseChoice.equals("finish")) {
-                //open returnChange method
+                returnChange();
                 run();
                 //break;
             }
@@ -93,5 +93,6 @@ public class VendingMachine {
             coinsReturned[3]++;
         }
         return coinsReturned;
+        //return coinsReturned[0] + " dollars, " + coinsReturned[1] + " quarters, " + coinsReturned[2] + " dimes and " + coinsReturned[3] + " nickels";
     }
 }
