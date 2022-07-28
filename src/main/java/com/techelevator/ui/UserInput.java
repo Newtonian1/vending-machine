@@ -38,6 +38,33 @@ public class UserInput {
         }
 
     }
+    public static String getPurchaseScreenOption(){
+        System.out.println("What would you like to do?");
+        System.out.println();
+
+        System.out.println("M) Feed Money");
+        System.out.println("S) Select Item");
+        System.out.println("F) Finish Transaction");
+
+        System.out.println();
+        System.out.print("Please select an option: ");
+
+        String selectedPurchaseOption = scanner.nextLine();
+        String purchaseOption = selectedPurchaseOption.trim().toLowerCase();
+        if (purchaseOption.equals("m")) {
+            return "feed";
+        }
+        else if (purchaseOption.equals("s")) {
+            return "select";
+        }
+        else if (purchaseOption.equals("f")) {
+            return "finish";
+        }
+        else {
+            return "";
+        }
+
+    }
 
 
 }
