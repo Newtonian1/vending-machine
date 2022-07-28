@@ -2,6 +2,7 @@ package com.techelevator.application;
 
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+import com.techelevator.application.Inventory;
 
 import java.io.File;
 import java.io.IOException;

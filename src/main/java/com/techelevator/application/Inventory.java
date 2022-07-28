@@ -28,5 +28,10 @@ public class Inventory {
             System.out.println("file not found");
         }
     }
-    
+    public void displayInventory(){
+        for (Map.Entry<String, ItemSlot> each : inventory.entrySet()){
+            System.out.println(each.getKey() + each.getValue());
+
+        }
+    }
 }
