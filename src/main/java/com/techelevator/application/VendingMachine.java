@@ -47,7 +47,7 @@ public class VendingMachine {
 
             } else if (choice.equals("exit")) {
                 // open shutDown method
-                break;
+                System.exit(0);
             }
         }
     }
