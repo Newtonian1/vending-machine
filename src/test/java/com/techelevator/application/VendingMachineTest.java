@@ -22,4 +22,36 @@ public class VendingMachineTest {
         //Assert
         Assert.assertArrayEquals(expected, result);
     }
+
+    @Test
+    public void returnChange_2d90_should_return_2d3q1d1n() {
+        //Arrange
+        VendingMachine vm = new VendingMachine();
+        BigDecimal b = new BigDecimal("2.90");
+        vm.setBalance(b);
+
+        int[] expected = new int[]{2,3,1,1};
+
+        //Act
+        int[] result = vm.returnChange();
+
+        //Assert
+        Assert.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void returnChange_0_should_return_0() {
+        //Arrange
+        VendingMachine vm = new VendingMachine();
+        BigDecimal b = new BigDecimal("0.00");
+        vm.setBalance(b);
+
+        int[] expected = new int[]{0,0,0,0};
+
+        //Act
+        int[] result = vm.returnChange();
+
+        //Assert
+        Assert.assertArrayEquals(expected, result);
+    }
 }
