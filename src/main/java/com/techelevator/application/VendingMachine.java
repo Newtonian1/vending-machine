@@ -62,6 +62,7 @@ public class VendingMachine {
             }else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
                 feedMachine(feed);
+                UserOutput.displayMessage("Current balance: $" + balance);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
 
