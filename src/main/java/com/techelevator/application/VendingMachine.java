@@ -58,7 +58,7 @@ public class VendingMachine {
     public void runPurchaseMenu() {
         while (true) {
             UserOutput.displayPurchaseScreen();
-            String purchaseChoice = UserInput.getPurchaseScreenOption();
+            String purchaseChoice = UserInput.getPurchaseScreenOption(balance);
             System.out.println(purchaseChoice);
             if (purchaseChoice.equals("")) {
                 UserOutput.displayMessage("Please enter a valid input");
@@ -66,7 +66,6 @@ public class VendingMachine {
             }else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
                 feedMachine(feed);
-                UserOutput.displayMessage("Current balance: $" + balance);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
                 String itemSlot = UserInput.selectItemSlot();

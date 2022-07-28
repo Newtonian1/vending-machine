@@ -2,6 +2,7 @@ package com.techelevator.ui;
 
 import com.techelevator.application.VendingMachine;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -40,7 +41,7 @@ public class UserInput {
         }
 
     }
-    public static String getPurchaseScreenOption(){
+    public static String getPurchaseScreenOption(BigDecimal balance){
         System.out.println("What would you like to do?");
         System.out.println();
 
@@ -48,6 +49,8 @@ public class UserInput {
         System.out.println("S) Select Item");
         System.out.println("F) Finish Transaction");
 
+        System.out.println();
+        System.out.println("Balance: $" + balance);
         System.out.println();
         System.out.print("Please select an option: ");
 
