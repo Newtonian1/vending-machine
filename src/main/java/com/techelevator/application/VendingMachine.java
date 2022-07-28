@@ -64,26 +64,26 @@ public class VendingMachine {
     }
 
     //Balance management methods
-    public int[] returnChange(BigDecimal b) {
+    public int[] returnChange() {
         int[] coinsReturned = new int[4];
         BigDecimal dollar = new BigDecimal("1.00");
         BigDecimal quarter = new BigDecimal("0.25");
         BigDecimal dime = new BigDecimal("0.10");
         BigDecimal nickel = new BigDecimal("0.05");
-        while (b.compareTo(dollar) >= 0) {
-            b.subtract(dollar);
+        while (balance.compareTo(dollar) >= 0) {
+            balance = balance.subtract(dollar);
             coinsReturned[0]++;
         }
-        while (b.compareTo(quarter) >= 0) {
-            b.subtract(quarter);
+        while (balance.compareTo(quarter) >= 0) {
+            balance = balance.subtract(quarter);
             coinsReturned[1]++;
         }
-        while (b.compareTo(dime) >= 0) {
-            b.subtract(dime);
+        while (balance.compareTo(dime) >= 0) {
+            balance = balance.subtract(dime);
             coinsReturned[2]++;
         }
-        while (b.compareTo(nickel) >= 0) {
-            b.subtract(nickel);
+        while (balance.compareTo(nickel) >= 0) {
+            balance = balance.subtract(nickel);
             coinsReturned[3]++;
         }
         return coinsReturned;
