@@ -14,4 +14,11 @@ public class UserOutput {
         System.out.println("***************************************************");
         System.out.println();
     }
+    public static void displayPurchaseScreen(){
+        System.out.println();
+        System.out.println("***************************************************");
+        System.out.println("                      Purchase Menu");
+        System.out.println("***************************************************");
+        System.out.println();
+    }
 }
