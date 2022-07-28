@@ -35,9 +35,7 @@ public class UserInput {
         }
         else {
             return "";
-        }// add logic for empty strings, if option == ""
-        //send message to select a valid input
-        //call the relevant screen option
+        }
 
     }
     public static String getPurchaseScreenOption(){

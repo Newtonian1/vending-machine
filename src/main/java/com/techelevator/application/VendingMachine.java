@@ -32,7 +32,10 @@ public class VendingMachine {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
             System.out.println(choice);
-            if (choice.equals("display")) {
+            if (choice.equals("")){
+                UserOutput.displayMessage("Please enter a valid input");
+                run();
+            }else if (choice.equals("display")) {
                 // display the items
             } else if (choice.equals("purchase")) {
                 // make a purchase
@@ -50,7 +53,10 @@ public class VendingMachine {
             UserOutput.displayPurchaseScreen();
             String purchaseChoice = UserInput.getPurchaseScreenOption();
             System.out.println(purchaseChoice);
-            if (purchaseChoice.equals("feed")) {
+            if (purchaseChoice.equals("")) {
+                UserOutput.displayMessage("Please enter a valid input");
+                runPurchaseMenu();
+            }else if (purchaseChoice.equals("feed")) {
                 // open feed method
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
