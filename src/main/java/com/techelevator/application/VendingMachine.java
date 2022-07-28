@@ -60,7 +60,8 @@ public class VendingMachine {
                 UserOutput.displayMessage("Please enter a valid input");
                 runPurchaseMenu();
             }else if (purchaseChoice.equals("feed")) {
-                // open feed method
+                String feed = UserInput.promptFeedMachine();
+                feedMachine(feed);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
 
