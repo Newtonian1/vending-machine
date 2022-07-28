@@ -73,7 +73,7 @@ public class UserInput {
         //ideally, inventory source would be read form the same file everytime
         //but for the sake of the exercise, the user is prompted to pick which file is loaded
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Select a .csv file to load");
+        System.out.print("Select a .csv file to load: ");
         String csvInput = scanner.nextLine();
         String csvOutput = "";
         if (csvInput.substring(csvInput.length() - 4, csvInput.length()). equals(".csv")){
@@ -102,6 +102,12 @@ public class UserInput {
                 System.err.println("ARE YOU ILLITERATE?");
             }
         }
+    }
+    public static String selectItemSlot(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter the item slot code of the item you want (i.e. A1): ");
+        String requestedItemSlot = scanner.nextLine();
+        return requestedItemSlot;
     }
 }
 

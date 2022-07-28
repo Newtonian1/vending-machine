@@ -5,6 +5,7 @@ import com.techelevator.ui.UserInput;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,6 +13,9 @@ import java.util.Scanner;
 public class Inventory {
     private Map<String, ItemSlot> inventory = new HashMap<>();
 
+    public Map<String, ItemSlot> getInventory() {
+        return inventory;
+    }
 
     public void setInventory() {
         String csvFileChoice = UserInput.inventoryInput();
@@ -30,7 +34,7 @@ public class Inventory {
     }
     public void displayInventory(){
         for (Map.Entry<String, ItemSlot> each : inventory.entrySet()){
-            System.out.println(each.getKey() + each.getValue());
+            System.out.println(each.getKey() + each.getValue().toString());
 
         }
     }

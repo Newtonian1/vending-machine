@@ -20,6 +20,8 @@ public class VendingMachine {
     public BigDecimal getBalance() {
         return balance;
     }
+    Inventory inventory = new Inventory();
+
 
     /*public Map<String, ItemSlot> getInventory() {
         return inventory;
@@ -31,6 +33,11 @@ public class VendingMachine {
     }
 
     //Program flow methods
+
+    public void startUp(){
+        inventory.setInventory();
+        run();
+    }
     public void run() {
         while (true) {
             UserOutput.displayHomeScreen();
@@ -40,13 +47,14 @@ public class VendingMachine {
                 UserOutput.displayMessage("Please enter a valid input");
                 run();
             }else if (choice.equals("display")) {
-                // display the items
+                inventory.displayInventory();
             } else if (choice.equals("purchase")) {
                 // make a purchase
                 runPurchaseMenu();
 
             } else if (choice.equals("exit")) {
                 // open shutDown method
+                System.out.println("Thank you for shopping!");
                 System.exit(0);
             }
         }
@@ -66,6 +74,8 @@ public class VendingMachine {
                 UserOutput.displayMessage("Current balance: $" + balance);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
+                String itemSlot = UserInput.selectItemSlot();
+                dispenseItem(itemSlot);
 
             } else if (purchaseChoice.equals("finish")) {
                 returnChange();
@@ -134,6 +144,28 @@ public class VendingMachine {
             System.out.println("file not found");
         }*/
 
+    public void dispenseItem(String itemSlot){
+        if (!inventory.getInventory().containsKey(itemSlot)){
+            UserOutput.displayMessage("Item slot does not exist");
+            runPurchaseMenu();
+        }else if (inventory.getInventory().containsKey(itemSlot)){
+            if (inventory.getInventory().get(itemSlot).getQuantity() < 1){
+                UserOutput.displayMessage("Item is out of stock");
+                runPurchaseMenu();
+            }else if (balance.compareTo(inventory.getInventory().get(itemSlot).getPrice()) == -1){
+                UserOutput.displayMessage("Insufficient funds");
+                runPurchaseMenu();
+            }
+            else{
+                System.out.println(inventory.getInventory().get(itemSlot).toString());
+                System.out.println(inventory.getInventory().get(itemSlot).funnyMessage());
+                balance = balance.subtract(inventory.getInventory().get(itemSlot).getPrice());
+                System.out.println("balance: $" + balance);
+                inventory.getInventory().get(itemSlot).decrementQuantity();
+                runPurchaseMenu();
+            }
+        }
+    }
 
     }
 
