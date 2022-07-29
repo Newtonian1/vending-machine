@@ -37,7 +37,6 @@ public class VendingMachine {
             System.out.println(choice);
             if (choice.equals("")) {
                 UserOutput.invalidInput();
-                run();
             } else if (choice.equals("display")) {
                 inventory.displayInventory();
             } else if (choice.equals("purchase")) {
@@ -56,7 +55,6 @@ public class VendingMachine {
             System.out.println(purchaseChoice);
             if (purchaseChoice.equals("")) {
                 UserOutput.invalidInput();
-                runPurchaseMenu();
             } else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
                 if (feed.equals("0")) {

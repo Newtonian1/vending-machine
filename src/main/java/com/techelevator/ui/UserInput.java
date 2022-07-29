@@ -110,7 +110,7 @@ public class UserInput {
     public static String selectItemSlot(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter the item slot code of the item you want (i.e. A1): ");
-        String requestedItemSlot = scanner.nextLine();
+        String requestedItemSlot = scanner.nextLine().toUpperCase();
         return requestedItemSlot;
     }
 }
