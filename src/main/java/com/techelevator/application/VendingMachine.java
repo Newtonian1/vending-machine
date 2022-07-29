@@ -46,7 +46,6 @@ public class VendingMachine {
             } else if (choice.equals("purchase")) {
                 // make a purchase
                 runPurchaseMenu();
-
             } else if (choice.equals("exit")) {
                 // open shutDown method
                 System.out.println("Thank you for shopping!");
@@ -68,6 +67,10 @@ public class VendingMachine {
                 feedMachine(feed);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
+                inventory.displayInventory();
+                System.out.println();
+                System.out.println("***************************************************");
+                System.out.println();
                 String itemSlot = UserInput.selectItemSlot();
                 dispenseItem(itemSlot);
 
@@ -155,12 +158,12 @@ public class VendingMachine {
                 runPurchaseMenu();
             }
             else{
+                slot.decrementQuantity();
                 System.out.println(slot.toString());
                 System.out.println(slot.funnyMessage());
                 auditWriter.write("Purchased " + slot.getItemName(), balance, balance.subtract(price));
                 balance = balance.subtract(price);
                 System.out.println("balance: $" + balance);
-                slot.decrementQuantity();
                 runPurchaseMenu();
             }
         }
