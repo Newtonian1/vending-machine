@@ -18,11 +18,6 @@ public class VendingMachine {
     Inventory inventory = new Inventory();
     AuditWriter auditWriter = new AuditWriter();
 
-
-    /*public Map<String, ItemSlot> getInventory() {
-        return inventory;
-    }*/
-
     //Setters
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
@@ -130,20 +125,6 @@ public class VendingMachine {
         }
         auditWriter.write("MONEY FED", balance.subtract(new BigDecimal(userInput)), balance);
     }
-    /*public void setInventory(){
-        String csvFileChoice = UserInput.inventoryInput();
-        File file = new File(csvFileChoice);
-        try{
-            Scanner data = new Scanner(file);
-            while (data.hasNextLine()){
-                String line = data.nextLine();
-                String[] strArr = line.split(",");
-                ItemSlot itemSlot = new ItemSlot(strArr[0], strArr[1], new BigDecimal(strArr[2]), strArr[3]);
-                inventory.put(itemSlot.getSlot(), itemSlot);
-            }
-        }catch (IOException e){
-            System.out.println("file not found");
-        }*/
 
     public String dispenseItem(String itemSlot) {
         ItemSlot slot = inventory.getInventory().get(itemSlot);
