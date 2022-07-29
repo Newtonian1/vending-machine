@@ -25,7 +25,7 @@ public class AuditWriter {
             if (!file.exists()){
                 file.createNewFile();
             }
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
             String formatDateTime = LocalDateTime.now().format(format);
             FileOutputStream auditOutput = new FileOutputStream(file, true);
             PrintWriter writer = new PrintWriter(auditOutput);
