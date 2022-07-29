@@ -1,0 +1,18 @@
+Taste Elevator Sales Report
+Teaberry|0
+Caramel Bar|0
+Preengles|0
+Stackers|0
+7Down|0
+Singlemint Gum|0
+U-Chews|1
+Papsi|0
+Moonpie|0
+Chiclets|0
+Ginger Ayle|0
+Mountain Melter|0
+Popcorn|0
+Snykkers|0
+Wonka Bar|0
+Chippos|0
+TOTAL SALES $1.65

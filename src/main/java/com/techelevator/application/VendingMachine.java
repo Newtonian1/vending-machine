@@ -3,11 +3,10 @@ package com.techelevator.application;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class VendingMachine {
@@ -52,6 +51,7 @@ public class VendingMachine {
                 System.exit(0);
             } else if (choice.equals("secret")) {
                 salesReport();
+                UserOutput.salesReport();
             }
         }
     }
@@ -155,19 +155,23 @@ public class VendingMachine {
     }
 
     public void salesReport() {
-        String fileName = "sales_report_" + LocalDateTime.now() + ".txt";
-        File file = new File(fileName);
-        try(PrintWriter writer = new PrintWriter(file)) {
-            if (!file.exists()){
-                file.createNewFile();
-            }
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
+        String formatDateTime = LocalDateTime.now().format(format);
+        String fileName = "SalesReports/sales_report_" + formatDateTime + ".txt";
+        try {
+            File file = new File(fileName);
+            file.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+            PrintWriter writer = new PrintWriter(fileOutputStream);
             writer.println("Taste Elevator Sales Report");
             for (Map.Entry<String, ItemSlot> element : inventory.getInventory().entrySet()) {
                 ItemSlot slot = element.getValue();
                 writer.println(slot.getItemName() + "|" + (6 - slot.getQuantity()));
             }
             writer.println("TOTAL SALES $" + totalSales.toString());
-        } catch (Exception e) {
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
             UserOutput.fileNotFound();
         }
     }

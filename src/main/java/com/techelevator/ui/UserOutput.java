@@ -82,4 +82,8 @@ public class UserOutput {
     public static void printItem(String item) {
         System.out.println(item);
     }
+
+    public static void salesReport() {
+        System.out.println("Sales report generated");
+    }
 }
