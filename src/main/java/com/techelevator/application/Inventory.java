@@ -6,10 +6,7 @@ import com.techelevator.ui.UserOutput;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Inventory {
     private Map<String, ItemSlot> inventory = new HashMap<>();
@@ -34,8 +31,13 @@ public class Inventory {
         }
     }
     public void displayInventory(){
+        List<String> itemStock = new ArrayList<>();
         for (Map.Entry<String, ItemSlot> each : inventory.entrySet()){
-            System.out.println(each.getKey() + each.getValue().toString());
+            itemStock.add(each.getKey() + each.getValue().toString());
+        }
+        Collections.sort(itemStock);
+        for (String item : itemStock) {
+            UserOutput.printItem(item);
         }
     }
 }

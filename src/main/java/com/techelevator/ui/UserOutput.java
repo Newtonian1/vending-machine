@@ -75,4 +75,8 @@ public class UserOutput {
     public static void fileNotFound() {
         System.err.println("File not found");
     }
+
+    public static void printItem(String item) {
+        System.out.println(item);
+    }
 }
