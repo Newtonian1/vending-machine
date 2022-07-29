@@ -84,6 +84,6 @@ public class UserOutput {
     }
 
     public static void salesReport() {
-        System.out.println("Sales report generated");
+        System.err.println("Sales report generated");
     }
 }
