@@ -50,7 +50,7 @@ public class UserInput {
         System.out.println("F) Finish Transaction");
 
         System.out.println();
-        System.out.println("Balance: $" + balance);
+        UserOutput.showBalance(balance);
         System.out.println();
         System.out.print("Please select an option: ");
 

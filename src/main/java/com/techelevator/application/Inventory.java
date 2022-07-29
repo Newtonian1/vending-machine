@@ -1,6 +1,7 @@
 package com.techelevator.application;
 
 import com.techelevator.ui.UserInput;
+import com.techelevator.ui.UserOutput;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,13 +30,12 @@ public class Inventory {
                 inventory.put(itemSlot.getSlot(), itemSlot);
             }
         } catch (IOException e) {
-            System.out.println("file not found");
+            UserOutput.fileNotFound();
         }
     }
     public void displayInventory(){
         for (Map.Entry<String, ItemSlot> each : inventory.entrySet()){
             System.out.println(each.getKey() + each.getValue().toString());
-
         }
     }
 }
