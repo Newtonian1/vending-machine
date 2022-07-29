@@ -49,10 +49,10 @@ public class ItemSlot {
     @Override
     public String toString() {
         return
-                ") itemName: '" + itemName + '\'' +
-                        ", price: $" + price +
-                        ", itemType: '" + itemType + '\'' +
-                        ", quantity: " + quantity;
+                ") Item: '" + itemName + '\'' +
+                        ", Price: $" + price +
+                        ", Type: '" + itemType + '\'' +
+                        ", Quantity: " + quantity;
     }
 
     public String toStringPurchase() {
