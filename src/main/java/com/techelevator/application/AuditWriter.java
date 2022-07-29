@@ -1,5 +1,7 @@
 package com.techelevator.application;
 
+import com.techelevator.ui.UserOutput;
+
 import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -31,7 +33,7 @@ public class AuditWriter {
             writer.flush();
             writer.close();
         }catch(IOException e){
-            System.out.println("File not found");
+            UserOutput.fileNotFound();
         }
     }
 }
