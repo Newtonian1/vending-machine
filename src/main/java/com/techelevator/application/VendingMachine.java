@@ -160,11 +160,10 @@ public class VendingMachine {
                 return "NEED MONEY";
             } else {
                 slot.decrementQuantity();
-                System.out.println(slot.toStringPurchase());
-                System.out.println(slot.funnyMessage());
+                UserOutput.printPurchase(slot);
                 auditWriter.write("Purchased " + slot.getItemName(), balance, balance.subtract(price));
                 balance = balance.subtract(price);
-                System.out.println("balance: $" + balance);
+                UserOutput.showBalance(balance);
                 return "SUCCESS";
             }
         }

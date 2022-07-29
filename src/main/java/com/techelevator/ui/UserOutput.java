@@ -1,5 +1,9 @@
 package com.techelevator.ui;
 
+import com.techelevator.application.ItemSlot;
+
+import java.math.BigDecimal;
+
 public class UserOutput {
     public static void displayMessage(String message) {
         System.out.println();
@@ -57,5 +61,14 @@ public class UserOutput {
         System.out.println();
         System.out.println("Insufficient funds");
         System.out.println();
+    }
+
+    public static void printPurchase(ItemSlot slot) {
+        System.out.println(slot.toStringPurchase());
+        System.out.println(slot.funnyMessage());
+    }
+
+    public static void showBalance(BigDecimal balance) {
+        System.out.println("Balance: $" + balance);
     }
 }
