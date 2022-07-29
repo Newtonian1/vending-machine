@@ -41,6 +41,9 @@ public class UserOutput {
     }
 
     public static void change(int dollars, int quarters, int dimes, int nickels) {
+        if (dollars == 0 && quarters == 0 && dimes == 0 && nickels == 0) {
+            return;
+        }
         System.out.println("Clink!");
         System.out.println("Change dispensed: " + dollars + " dollar(s), " + quarters + " quarter(s), " + dimes + " dime(s), and " + nickels + " nickel(s)");
     }

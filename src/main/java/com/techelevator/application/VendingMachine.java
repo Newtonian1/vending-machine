@@ -127,26 +127,22 @@ public class VendingMachine {
         auditWriter.write("MONEY FED" + ":   ", balance.subtract(new BigDecimal(userInput)), balance);
     }
 
-    public String dispenseItem(String itemSlot) {
+    public void dispenseItem(String itemSlot) {
         ItemSlot slot = inventory.getInventory().get(itemSlot);
         if (!inventory.getInventory().containsKey(itemSlot)) {
             UserOutput.itemSlotDNE();
-            return "DNE";
         } else {
             BigDecimal price = slot.getPrice();
             if (slot.getQuantity() < 1) {
                 UserOutput.itemOutOfStock();
-                return "OUT";
             } else if (balance.compareTo(price) == -1) {
                 UserOutput.insufficientFunds();
-                return "NEED MONEY";
             } else {
                 slot.decrementQuantity();
                 UserOutput.printPurchase(slot);
                 auditWriter.write(slot.getItemName() + "\t", balance, balance.subtract(price));
                 balance = balance.subtract(price);
                 UserOutput.showBalance(balance);
-                return "SUCCESS";
             }
         }
     }
