@@ -41,16 +41,14 @@ public class VendingMachine {
             String choice = UserInput.getHomeScreenOption();
             System.out.println(choice);
             if (choice.equals("")) {
-                UserOutput.displayMessage("Please enter a valid input");
+                UserOutput.invalidInput();
                 run();
             } else if (choice.equals("display")) {
                 inventory.displayInventory();
             } else if (choice.equals("purchase")) {
-                // make a purchase
                 runPurchaseMenu();
             } else if (choice.equals("exit")) {
-                // open shutDown method
-                System.out.println("Thank you for shopping!");
+                UserOutput.thankYou();
                 System.exit(0);
             }
         }
@@ -62,7 +60,7 @@ public class VendingMachine {
             String purchaseChoice = UserInput.getPurchaseScreenOption(balance);
             System.out.println(purchaseChoice);
             if (purchaseChoice.equals("")) {
-                UserOutput.displayMessage("Please enter a valid input");
+                UserOutput.invalidInput();
                 runPurchaseMenu();
             } else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
@@ -73,9 +71,7 @@ public class VendingMachine {
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
                 inventory.displayInventory();
-                System.out.println();
-                System.out.println("***************************************************");
-                System.out.println();
+                UserOutput.divider();
                 String itemSlot = UserInput.selectItemSlot();
                 dispenseItem(itemSlot);
 
@@ -111,8 +107,7 @@ public class VendingMachine {
             balance = balance.subtract(nickel);
             coinsReturned[3]++;
         }
-        System.out.println("Clink!");
-        System.out.println("Change dispensed: " + coinsReturned[0] + " dollar(s), " + coinsReturned[1] + " quarter(s), " + coinsReturned[2] + " dime(s), and " + coinsReturned[3] + " nickel(s)");
+        UserOutput.change(coinsReturned[0], coinsReturned[1], coinsReturned[2], coinsReturned[3]);
         return coinsReturned;
     }
 
@@ -153,15 +148,15 @@ public class VendingMachine {
     public String dispenseItem(String itemSlot) {
         ItemSlot slot = inventory.getInventory().get(itemSlot);
         if (!inventory.getInventory().containsKey(itemSlot)) {
-            UserOutput.displayMessage("Item slot does not exist");
+            UserOutput.itemSlotDNE();
             return "DNE";
         } else {
             BigDecimal price = slot.getPrice();
             if (slot.getQuantity() < 1) {
-                UserOutput.displayMessage("Item is out of stock");
+                UserOutput.itemOutOfStock();
                 return "OUT";
             } else if (balance.compareTo(price) == -1) {
-                UserOutput.displayMessage("Insufficient funds");
+                UserOutput.insufficientFunds();
                 return "NEED MONEY";
             } else {
                 slot.decrementQuantity();
