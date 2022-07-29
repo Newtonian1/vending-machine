@@ -27,7 +27,7 @@ public class UserOutput {
     }
 
     public static void invalidInput() {
-        System.out.println("Please enter a valid input");
+        System.err.println("Please enter a valid input");
     }
 
     public static void thankYou() {
@@ -50,19 +50,19 @@ public class UserOutput {
 
     public static void itemSlotDNE() {
         System.out.println();
-        System.out.println("Item slot does not exist");
+        System.err.println("Item slot does not exist");
         System.out.println();
     }
 
     public static void itemOutOfStock() {
         System.out.println();
-        System.out.println("Item is out of stock");
+        System.err.println("Item is out of stock");
         System.out.println();
     }
 
     public static void insufficientFunds() {
         System.out.println();
-        System.out.println("Insufficient funds");
+        System.err.println("Insufficient funds");
         System.out.println();
     }
 
