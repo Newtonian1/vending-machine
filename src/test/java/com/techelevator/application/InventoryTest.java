@@ -30,6 +30,10 @@ public class InventoryTest extends Inventory{
             System.out.println("file not found");
         }
     }
+   /* @Override
+    public Map<String, ItemSlot> getInventory() {
+        return ;
+    }*/
 
     @Test
     public void test_set_inventory(){
