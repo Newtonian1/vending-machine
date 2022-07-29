@@ -3,7 +3,12 @@ package com.techelevator.application;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Map;
 
 public class VendingMachine {
     //Instance variables
@@ -17,6 +22,7 @@ public class VendingMachine {
 
     Inventory inventory = new Inventory();
     AuditWriter auditWriter = new AuditWriter();
+    private BigDecimal totalSales = new BigDecimal("0.00");
 
     //Setters
     public void setBalance(BigDecimal balance) {
@@ -44,6 +50,8 @@ public class VendingMachine {
             } else if (choice.equals("exit")) {
                 UserOutput.thankYou();
                 System.exit(0);
+            } else if (choice.equals("secret")) {
+                salesReport();
             }
         }
     }
@@ -140,8 +148,27 @@ public class VendingMachine {
                 UserOutput.printPurchase(slot);
                 auditWriter.write(slot.getItemName() + "\t", balance, balance.subtract(price));
                 balance = balance.subtract(price);
+                totalSales = totalSales.add(price);
                 UserOutput.showBalance(balance);
             }
+        }
+    }
+
+    public void salesReport() {
+        String fileName = "sales_report_" + LocalDateTime.now() + ".txt";
+        File file = new File(fileName);
+        try(PrintWriter writer = new PrintWriter(file)) {
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            writer.println("Taste Elevator Sales Report");
+            for (Map.Entry<String, ItemSlot> element : inventory.getInventory().entrySet()) {
+                ItemSlot slot = element.getValue();
+                writer.println(slot.getItemName() + "|" + (6 - slot.getQuantity()));
+            }
+            writer.println("TOTAL SALES $" + totalSales.toString());
+        } catch (Exception e) {
+            UserOutput.fileNotFound();
         }
     }
 
