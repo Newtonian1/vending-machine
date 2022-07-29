@@ -150,16 +150,19 @@ public class VendingMachine {
             System.out.println("file not found");
         }*/
 
-    public void dispenseItem(String itemSlot) {
+    public String dispenseItem(String itemSlot) {
         ItemSlot slot = inventory.getInventory().get(itemSlot);
         if (!inventory.getInventory().containsKey(itemSlot)) {
             UserOutput.displayMessage("Item slot does not exist");
+            return "DNE";
         } else {
             BigDecimal price = slot.getPrice();
             if (slot.getQuantity() < 1) {
                 UserOutput.displayMessage("Item is out of stock");
+                return "OUT";
             } else if (balance.compareTo(price) == -1) {
                 UserOutput.displayMessage("Insufficient funds");
+                return "NEED MONEY";
             } else {
                 slot.decrementQuantity();
                 System.out.println(slot.toStringPurchase());
@@ -167,6 +170,7 @@ public class VendingMachine {
                 auditWriter.write("Purchased " + slot.getItemName(), balance, balance.subtract(price));
                 balance = balance.subtract(price);
                 System.out.println("balance: $" + balance);
+                return "SUCCESS";
             }
         }
     }
