@@ -4,7 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class VendingMachineTest {
 
@@ -101,4 +104,21 @@ public class VendingMachineTest {
         //Assert
         Assert.assertEquals(expected, vm.getBalance());
     }
+
+//    @Test
+//    public void dispenseItem_A1_b5_should_return_SUCCESS() {
+//        //Arrange
+//        File file = new File("vending.csv");
+//        try {
+//            Scanner data = new Scanner(file);
+//            while (data.hasNextLine()) {
+//                String line = data.nextLine();
+//                String[] strArr = line.split(",");
+//                ItemSlot itemSlot = new ItemSlot(strArr[0], strArr[1], new BigDecimal(strArr[2]), strArr[3]);
+//                vm.inventory.getInventory.put(itemSlot.getSlot(), itemSlot);
+//            }
+//        } catch (IOException e) {
+//            System.out.println("file not found");
+//        }
+//    }
 }
