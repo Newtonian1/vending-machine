@@ -49,15 +49,15 @@ public class ItemSlot {
     @Override
     public String toString() {
         return
-                ") Item: '" + itemName + '\'' +
-                        ", Price: $" + price +
-                        ", Type: '" + itemType + '\'' +
-                        ", Quantity: " + quantity;
+                ") Item: " + String.format("%-15s", itemName) +
+                        " | Price: $" + price +
+                        " | Type: " + String.format("%-6s",itemType) +
+                        " | Quantity: " + quantity;
     }
 
     public String toStringPurchase() {
         return
-                "Item vended: '" + itemName + '\'' +
+                "Item vended: " + itemName +
                         " for $" + price;
     }
 

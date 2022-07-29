@@ -29,7 +29,7 @@ public class AuditWriter {
             String formatDateTime = LocalDateTime.now().format(format);
             FileOutputStream auditOutput = new FileOutputStream(file, true);
             PrintWriter writer = new PrintWriter(auditOutput);
-            writer.println(formatDateTime + "\t" + action + "\t$" + oldBalance + "\t$" + newBalance);
+            writer.println(formatDateTime + " " + String.format("%-19s", action) + "\t$" + oldBalance + "\t$" + newBalance);
             writer.flush();
             writer.close();
         }catch(IOException e){
