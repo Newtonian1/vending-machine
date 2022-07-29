@@ -71,4 +71,8 @@ public class UserOutput {
     public static void showBalance(BigDecimal balance) {
         System.out.println("Balance: $" + balance);
     }
+
+    public static void fileNotFound() {
+        System.err.println("File not found");
+    }
 }
