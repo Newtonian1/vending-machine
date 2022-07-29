@@ -14,6 +14,7 @@ public class VendingMachine {
     public BigDecimal getBalance() {
         return balance;
     }
+
     Inventory inventory = new Inventory();
     AuditWriter auditWriter = new AuditWriter();
 
@@ -29,19 +30,20 @@ public class VendingMachine {
 
     //Program flow methods
 
-    public void startUp(){
+    public void startUp() {
         inventory.setInventory();
         run();
     }
+
     public void run() {
         while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
             System.out.println(choice);
-            if (choice.equals("")){
+            if (choice.equals("")) {
                 UserOutput.displayMessage("Please enter a valid input");
                 run();
-            }else if (choice.equals("display")) {
+            } else if (choice.equals("display")) {
                 inventory.displayInventory();
             } else if (choice.equals("purchase")) {
                 // make a purchase
@@ -62,7 +64,7 @@ public class VendingMachine {
             if (purchaseChoice.equals("")) {
                 UserOutput.displayMessage("Please enter a valid input");
                 runPurchaseMenu();
-            }else if (purchaseChoice.equals("feed")) {
+            } else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
                 if (feed.equals("0")) {
                     continue;
@@ -115,7 +117,7 @@ public class VendingMachine {
     }
 
     public void feedMachine(String userInput) {
-        switch(userInput) {
+        switch (userInput) {
             case "1":
                 balance = balance.add(new BigDecimal("1.00"));
                 break;
@@ -127,6 +129,8 @@ public class VendingMachine {
                 break;
             case "20":
                 balance = balance.add(new BigDecimal("20.00"));
+                break;
+            default:
                 break;
         }
         auditWriter.write("MONEY FED", balance.subtract(new BigDecimal(userInput)), balance);
@@ -146,31 +150,26 @@ public class VendingMachine {
             System.out.println("file not found");
         }*/
 
-    public void dispenseItem(String itemSlot){
+    public void dispenseItem(String itemSlot) {
         ItemSlot slot = inventory.getInventory().get(itemSlot);
-        if (!inventory.getInventory().containsKey(itemSlot)){
+        if (!inventory.getInventory().containsKey(itemSlot)) {
             UserOutput.displayMessage("Item slot does not exist");
-            runPurchaseMenu();
-        }else if (inventory.getInventory().containsKey(itemSlot)){
+        } else {
             BigDecimal price = slot.getPrice();
-            if (slot.getQuantity() < 1){
+            if (slot.getQuantity() < 1) {
                 UserOutput.displayMessage("Item is out of stock");
-                runPurchaseMenu();
-            }else if (balance.compareTo(price) == -1){
+            } else if (balance.compareTo(price) == -1) {
                 UserOutput.displayMessage("Insufficient funds");
-                runPurchaseMenu();
-            }
-            else{
+            } else {
                 slot.decrementQuantity();
-                System.out.println(slot.toString());
+                System.out.println(slot.toStringPurchase());
                 System.out.println(slot.funnyMessage());
                 auditWriter.write("Purchased " + slot.getItemName(), balance, balance.subtract(price));
                 balance = balance.subtract(price);
                 System.out.println("balance: $" + balance);
-                runPurchaseMenu();
             }
         }
     }
 
-    }
+}
 

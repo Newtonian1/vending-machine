@@ -55,15 +55,21 @@ public class ItemSlot {
                         ", quantity: " + quantity;
     }
 
+    public String toStringPurchase() {
+        return
+                "Item vended: '" + itemName + '\'' +
+                        " for $" + price;
+    }
+
     public String funnyMessage() {
         if (itemType.equalsIgnoreCase("munchy")) {
-            return "Munchy, munchy, so good";
+            return "Munchy, munchy, so goooooooooood!";
         } else if (itemType.equalsIgnoreCase("gum")) {
-            return "Chewy, chewy, lot's of bubbles";
+            return "Chewy, chewy, lots of buuuuuuuuuubbles!";
         } else if (itemType.equalsIgnoreCase("drink")) {
-            return "Drinky, drinky, slurp slurp";
+            return "Drinky, drinky, slurp sluurrrrrrrrrrp!";
         } else if (itemType.equalsIgnoreCase("candy")) {
-            return "Sugar, sugar, so sweet";
+            return "Sugar, sugar, sooooooooooo sweet!";
         }
         return "";
     }
