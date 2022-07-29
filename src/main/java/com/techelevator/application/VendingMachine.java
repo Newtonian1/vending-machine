@@ -85,7 +85,7 @@ public class VendingMachine {
         BigDecimal quarter = new BigDecimal("0.25");
         BigDecimal dime = new BigDecimal("0.10");
         BigDecimal nickel = new BigDecimal("0.05");
-        auditWriter.write("CHANGE GIVEN", balance, new BigDecimal("0.00"));
+        auditWriter.write("CHANGE GIVEN\t", balance, new BigDecimal("0.00"));
         while (balance.compareTo(dollar) >= 0) {
             balance = balance.subtract(dollar);
             coinsReturned[0]++;
@@ -123,7 +123,7 @@ public class VendingMachine {
             default:
                 break;
         }
-        auditWriter.write("MONEY FED", balance.subtract(new BigDecimal(userInput)), balance);
+        auditWriter.write("MONEY FED\t", balance.subtract(new BigDecimal(userInput)), balance);
     }
 
     public String dispenseItem(String itemSlot) {
