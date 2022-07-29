@@ -21,7 +21,7 @@ public class UserOutput {
     public static void displayPurchaseScreen(){
         System.out.println();
         System.out.println("***************************************************");
-        System.out.println("                      Purchase Menu");
+        System.out.println("                 Purchase Menu");
         System.out.println("***************************************************");
         System.out.println();
     }
