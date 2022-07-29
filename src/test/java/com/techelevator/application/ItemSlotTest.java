@@ -11,7 +11,7 @@ public class ItemSlotTest {
     @Test
     public void print_funny_message_for_toenails(){
         //Arrange
-        String result = "Munchy, munchy, so good";
+        String result = "Munchy, munchy, so goooooooooood";
 
         //Act
         String expected = itemSlot.funnyMessage();
@@ -20,15 +20,33 @@ public class ItemSlotTest {
         Assert.assertEquals(expected, result);
     }
     @Test
-    public void test_standard_decrement_quantity(){
+    public void test_standard_decrement_quantity() {
         //Arrange
         int result = 5;
 
         //Act
         itemSlot.decrementQuantity();
-        int expected =
-
-                //Assert
+        int expected = itemSlot.getQuantity();
+        //Assert
         Assert.assertEquals(expected, result);
+    }
+    @Test
+    public void test_decrement_quantity_if_quantity_is_zero() {
+        //Arrange
+        int result = 0;
+
+        //Act
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        itemSlot.decrementQuantity();
+        int expected = itemSlot.getQuantity();
+        //Assert
+        Assert.assertEquals(expected, result);
+    }
 
 }
