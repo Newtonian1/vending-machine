@@ -93,14 +93,14 @@ public class UserInput {
 
     public static String promptFeedMachine() {
         Scanner userInput = new Scanner(System.in);
+        System.out.println("Please enter a dollar amount (1, 5, 10, or 20) or 0 to return to the purchase menu");
         int counter = 0;
         while (true) {
-            System.out.println("Please enter a dollar amount (1, 5, 10, or 20) to feed the machine:");
             String input = userInput.nextLine();
-            if (input.equals("1") || input.equals("5") || input.equals("10") || input.equals("20")) {
+            if (input.equals("1") || input.equals("5") || input.equals("10") || input.equals("20") || input.equals("0")) {
                 return input;
             }
-            System.err.println("Please enter a valid input");
+            System.err.println("Please enter a valid input (1, 5, 10, or 20) or 0 to return to the purchase menu");
             counter++;
             if (counter > 5) {
                 System.err.println("ARE YOU ILLITERATE?");

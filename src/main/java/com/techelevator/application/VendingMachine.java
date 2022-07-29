@@ -64,6 +64,9 @@ public class VendingMachine {
                 runPurchaseMenu();
             }else if (purchaseChoice.equals("feed")) {
                 String feed = UserInput.promptFeedMachine();
+                if (feed.equals("0")) {
+                    continue;
+                }
                 feedMachine(feed);
             } else if (purchaseChoice.equals("select")) {
                 // open selectItemSlot method
