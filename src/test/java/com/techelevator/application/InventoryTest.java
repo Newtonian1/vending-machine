@@ -35,7 +35,7 @@ public class InventoryTest extends Inventory{
         return ;
     }*/
 
-    @Test
+   /* @Test
     public void test_set_inventory(){
         //Inventory testInventory = new Inventory();
         testInventory.setInventory();
@@ -45,7 +45,7 @@ public class InventoryTest extends Inventory{
         result.put(testItem.getSlot(), testItem);
 
         Assert.assertEquals(testInventory, result);
-        }
+        }*/
 
     }
 
