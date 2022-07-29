@@ -1,11 +1,14 @@
 package com.techelevator.application;
 
 import com.techelevator.ui.UserInput;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class InventoryTest extends Inventory{
@@ -30,9 +33,14 @@ public class InventoryTest extends Inventory{
 
     @Test
     public void test_set_inventory(){
-        Inventory testInventory = new Inventory();
+        //Inventory testInventory = new Inventory();
+        testInventory.setInventory();
 
+        Map<String, ItemSlot> result = new HashMap<>();
+        ItemSlot testItem = new ItemSlot("Z9", "Joe's Toenails", new BigDecimal("1.50"), "Munchy");
+        result.put(testItem.getSlot(), testItem);
 
+        Assert.assertEquals(testInventory, result);
         }
 
     }
